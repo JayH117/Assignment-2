@@ -1,11 +1,11 @@
-class GameObject
+abstract class GameObject
 {
   PVector pos;
   PVector forward;
   float theta = 0.0f;
   float w;
   float halfW;
-  float speed = 5.0f;
+  float speed = 3.0f;
   color c; 
  
   GameObject()
@@ -23,11 +23,6 @@ class GameObject
     this.theta = 0.0f;
   }
   
-  void update()
-  {
-  }
-  
-  void render()
-  {
-  }  
+  abstract void update();
+  abstract void render(); 
 }
