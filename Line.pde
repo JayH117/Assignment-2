@@ -4,51 +4,69 @@ class Line extends GameObject
   char down;
   char left;
   char right;
+  char side = up;
+  int rwidth;
+  int rlength;
   
   Line()
   {
     super(width * 0.5f, height  * 0.5f, 50);     
   }
   
-  Line(char up, char down, char left, char right, float startX, float startY, color c)
+  Line(char up, char down, char left, char right, float startX, int rwidth, int rlength, float startY, color c)
   {
     super(startX, startY, 50);
     this.up = up;
     this.left = left;
     this.right = right;
+    this.down = down;
+    this.side = side;
+    this.rwidth = rwidth;
+    this.rlength = rlength;
     this.c = c;
   }
   
   void update()
   {
-    if(pos.x == 0 || pos.x == width)
+    forward.x = sin(theta);
+    forward.y = - cos(theta);
+
+    if (keys[left])
     {
-      pos.y = mouseY;
+      side = left;
     }
-    
-    if(pos.y == 0 || pos.y == width)
+    if (keys[right])
     {
-      pos.x = mouseX;
+      side = right;
     }
-    
-    if (pos.x < 0)
+    if (keys[up])
     {
-      pos.x = width;
+      side = up;
     }
-    
-    if (pos.x > width)
+    if (keys[down])
     {
-      pos.x = 0;
+      side = down;
+    } 
+    
+    if(side == up)
+    {
+      pos.x = mouseX-35;
+      pos.y = 5;
     }
-    
-    if (pos.y < 0)
+    if(side == down)
     {
-      pos.y = height;
+      pos.x = mouseX-35;
+      pos.y = height-15;
     }
-    
-    if (pos.y > height)
+    if(side == left)
     {
-      pos.y = 0;
+      pos.y = mouseY-35;
+      pos.x = 5;
+    }
+    if(side == right)
+    {
+      pos.y = mouseY-35;
+      pos.x = width -15; 
     }
       
   }
@@ -59,7 +77,14 @@ class Line extends GameObject
     stroke(c);
     fill(c);
     rotate(theta); // We want rotate to happen first, so you make the call AFTER translate    
-    rect(pos.x, pos.y, 70,10);
+    if(side == left || side == right)
+    {
+      rect(pos.x, pos.y, 10,70);
+    }
+    if(side == up || side == down)
+    {
+      rect(pos.x, pos.y, 70,10);
+    }
     popMatrix();
   }
 }

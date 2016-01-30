@@ -3,10 +3,10 @@
 void setup()
 {
   size(600, 600);
-  Ball ball = new Ball('W', 'A', 'D', ' ', 200, height / 2, color(0, 255, 255));
+  Ball ball = new Ball(200, height / 2, color(0, 255, 255));
   gameObjects.add(ball);
   
-  Line line = new Line('W', 'S', 'A', 'D', 0, 0, color(0, 255, 255));
+  Line line = new Line('W', 'S', 'A', 'D', 10, 70, width/2, 0, color(0, 255, 255));
   gameObjects.add(line);
   
 }

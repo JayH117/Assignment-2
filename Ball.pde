@@ -20,16 +20,10 @@ class Ball extends GameObject
     
   }
   
-  Ball(char move, char left, char right, char fire, float startX, float startY, color c)
+  Ball(float startX, float startY, color c)
   {
     super(startX, startY, 50);
-    this.move = move;
-    this.left = left;
-    this.right = right;
-    this.fire = fire;
     this.c = c;
-    lives = 10;
-    ammo = 10;
   }
 
   int elapsed = 12;
@@ -50,8 +44,6 @@ class Ball extends GameObject
     translate(pos.x, pos.y);
     stroke(c);
     fill(c);
-    text("Ammo: " + ammo, w, 0);
-    text("Lives: " + lives, w, 20);
     rotate(theta); // We want rotate to happen first, so you make the call AFTER translate    
     ellipse(0, 0, 30,30);
     popMatrix();
