@@ -6,7 +6,7 @@ void setup()
   Ball ball = new Ball('W', 'A', 'D', ' ', 200, height / 2, color(0, 255, 255));
   gameObjects.add(ball);
   
-  Line line = new Line();
+  Line line = new Line('W', 'S', 'A', 'D', 0, 0, color(0, 255, 255));
   gameObjects.add(line);
   
 }
@@ -40,24 +40,6 @@ void draw()
   
 }
 
-void checkCollisions()
-{
- for(int i = gameObjects.size() - 1 ; i >= 0   ;i --)
- {
-    GameObject go = gameObjects.get(i);
-    if (go instanceof Ball)
-    {
-      for(int j = gameObjects.size() - 1 ; j >= 0   ;j --)
-      {
-        GameObject other = gameObjects.get(j);
-        if (other instanceof Line) // Check the type of a object
-        {
-          // Bounding circle collisions
-          if (go.pos.dist(other.pos) < go.halfW + other.halfW)
-          {
-            
-          }
-        }
-      }
-    }
- }
+
+ 
+ 
