@@ -36,10 +36,28 @@ void draw()
     go.update();
     go.render();
   }
- 
-  
+  checkCollisions();
 }
 
-
- 
- 
+void checkCollisions()
+{
+ for(int i = gameObjects.size() - 1 ; i >= 0   ;i --)
+ {
+    GameObject go = gameObjects.get(i);
+    if (go instanceof Ball)
+    {
+      for(int j = gameObjects.size() - 1 ; j >= 0   ;j --)
+      {
+        GameObject other = gameObjects.get(j);
+        if (other instanceof Line) // Check the type of a object
+        {
+          // Bounding circle collisions
+          if (go.pos.dist(other.pos) < go.halfW + other.halfW)
+          {
+            ((Bounce) other).hit((Ball)go);
+          }
+        }
+      }
+    }
+ } 
+} 

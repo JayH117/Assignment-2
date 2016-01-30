@@ -5,7 +5,7 @@ class Ball extends GameObject
   char move;
   char left;
   char right;
-  char fire;
+  float theta;
   
   int lives;
   int ammo;
