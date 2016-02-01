@@ -26,10 +26,10 @@ class Line extends GameObject
     this.c = c;
   }
   
-  void applyTo(Ball ball)
+  /*void applyTo(Ball ball)
   {
-    Ball.theta ++;
-  }
+    Ball.theta();
+  }*/
   
   void update()
   {

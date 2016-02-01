@@ -20,9 +20,10 @@ class Ball extends GameObject
     
   }
   
-  Ball(float startX, float startY, color c)
+  Ball(float theta, float startX, float startY, color c)
   {
     super(startX, startY, 50);
+    this.theta = theta;
     this.c = c;
   }
 
@@ -36,6 +37,11 @@ class Ball extends GameObject
     pos.add(forward);
     
     elapsed ++;
+  }
+  
+  void theta()
+  {
+    theta += random(0.0,5.0);
   }
   
   void render()
