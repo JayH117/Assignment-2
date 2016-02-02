@@ -26,11 +26,6 @@ class Line extends GameObject
     this.c = c;
   }
   
-  /*void applyTo(Ball ball)
-  {
-    Ball.theta();
-  }*/
-  
   void update()
   {
     forward.x = sin(theta);

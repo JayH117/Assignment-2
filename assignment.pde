@@ -18,7 +18,7 @@ PImage img;
 void setup()
 {
   size(600, 600);
-  Ball ball = new Ball(0, 200, height / 2, color(0, 255, 255));
+  Ball ball = new Ball(200, height / 2, color(0, 255, 255));
   gameObjects.add(ball);
   
   cp5 = new ControlP5(this);
@@ -71,23 +71,5 @@ void draw()
 
 void checkCollisions()
 {
- for(int i = gameObjects.size() - 1 ; i >= 0   ;i --)
- {
-    GameObject go = gameObjects.get(i);
-    if (go instanceof Ball)
-    {
-      for(int j = gameObjects.size() - 1 ; j >= 0   ;j --)
-      {
-        GameObject other = gameObjects.get(j);
-        if (other instanceof Line) // Check the type of a object
-        {
-          // Bounding circle collisions
-          if (go.pos.dist(other.pos) < go.halfW + other.halfW)
-          {
-            ((Bounce) other).hit((Ball)go);
-          }
-        }
-      }
-    }
- } 
+ 
 } 
