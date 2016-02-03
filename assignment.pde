@@ -24,8 +24,8 @@ void setup()
   cp5 = new ControlP5(this);
   
   //declarations for cp5 buttons
-  cp5.addButton("drawTrendGraph").setValue(1).setPosition(150,275).setSize(80,50).setLabel("Start Game");
-  cp5.addButton("instructions").setValue(2).setPosition(350,275).setSize(80,50).setLabel("Instructions");
+  cp5.addButton("startgame").setValue(1).setPosition(150,450).setSize(80,50).setLabel("Start Game");
+  cp5.addButton("instructions").setValue(2).setPosition(350,450).setSize(80,50).setLabel("Instructions");
   
   minim = new Minim(this);
   player = minim.loadFile("Jet Set Radio Future - Technopathic.mp3", 2048);
@@ -37,13 +37,17 @@ void setup()
   
   Line line = new Line('W', 'S', 'A', 'D', 10, 70, width/2, 0, color(0, 255, 255));
   gameObjects.add(line);
-  
+  start=0;
+  //System.out.print(start);
 }
+
+int start;
 
 // The class name always starts with uppercase!!
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
 boolean[] keys = new boolean[512];
+
 
 void keyPressed()
 {
@@ -54,12 +58,18 @@ void keyReleased()
 {
   keys[keyCode] = false;
 }
-
 void draw()
 {
-  background(0);
-  image(img, 0, 0, width, height);
-  
+  //System.out.print(start);
+  if (start == 0)
+  {
+    image(img, 0, 0, width, height);
+  }
+  else
+  {
+    background(0);
+  }
+  System.out.println(start);
   for(int i = gameObjects.size() - 1 ; i >= 0   ;i --)
   {
     GameObject go = gameObjects.get(i);
@@ -91,10 +101,16 @@ void checkCollisions()
     }
  } 
 }
-
+  
 void instructions()
 {
   img = loadImage("inst.jpg");
   image(img, 0, 0);
   image(img, 0, 0, width, height);
 }
+
+void startgame()
+{
+  start = 1;
+}
+  
