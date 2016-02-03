@@ -71,6 +71,11 @@ class Line extends GameObject
       
   }
   
+  void applyTo(Ball ball)
+  {
+    ball.theta += -speed;
+  }
+  
   void render()
   {
     pushMatrix(); // reset the translation and rotation
