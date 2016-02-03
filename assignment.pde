@@ -25,7 +25,7 @@ void setup()
   
   //declarations for cp5 buttons
   cp5.addButton("drawTrendGraph").setValue(1).setPosition(150,275).setSize(80,50).setLabel("Start Game");
-  cp5.addButton("drawScatter").setValue(2).setPosition(350,275).setSize(80,50).setLabel("Instructions");
+  cp5.addButton("instructions").setValue(2).setPosition(350,275).setSize(80,50).setLabel("Instructions");
   
   minim = new Minim(this);
   player = minim.loadFile("Jet Set Radio Future - Technopathic.mp3", 2048);
@@ -82,13 +82,19 @@ void checkCollisions()
         if (other instanceof Line) // Check the type of a object
         {
           // Bounding circle collisions
-          if (go.pos.dist(other.pos) < go.halfW + other.halfW)
+          if (go.pos.dist(other.pos) < go.halfW + 50)
           {
-            // Do some casting
             ((Line) other).applyTo((Ball)go);
           }
         }
       }
     }
  } 
+}
+
+void instructions()
+{
+  img = loadImage("inst.jpg");
+  image(img, 0, 0);
+  image(img, 0, 0, width, height);
 }

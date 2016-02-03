@@ -45,7 +45,7 @@ class Ball extends GameObject
     stroke(c);
     fill(c);
     rotate(theta); // We want rotate to happen first, so you make the call AFTER translate    
-    ellipse(0, 0, 30,30);
+    ellipse(0, 0, halfW,halfW);
     popMatrix();
   }   
 }
