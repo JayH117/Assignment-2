@@ -70,11 +70,14 @@ void draw()
   {
     frames++;
     background(0);
-    for(int i = gameObjects.size() - 1 ; i >= 0   ;i --)
+    if (frames > 180)
     {
-      GameObject go = gameObjects.get(i);
-      go.update();
-      go.render();
+      for(int i = gameObjects.size() - 1 ; i >= 0   ;i --)
+      {
+        GameObject go = gameObjects.get(i);
+        go.update();
+        go.render();
+      }
     }
   }
   System.out.println(start);
