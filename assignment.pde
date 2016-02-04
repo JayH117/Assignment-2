@@ -24,8 +24,8 @@ void setup()
   cp5 = new ControlP5(this);
   
   //declarations for cp5 buttons
-  cp5.addButton("startgame").setValue(1).setPosition(150,450).setSize(80,50).setLabel("Start Game");
-  cp5.addButton("instructions").setValue(2).setPosition(350,450).setSize(80,50).setLabel("Instructions");
+  cp5.addButton("startgame").setValue(1).setPosition(150,450).setSize(80,50).setLabel("Start Game").show();
+  cp5.addButton("instructions").setValue(2).setPosition(350,450).setSize(80,50).setLabel("Instructions").show();
   
   minim = new Minim(this);
   player = minim.loadFile("Jet Set Radio Future - Technopathic.mp3", 2048);
@@ -114,5 +114,7 @@ void instructions()
 void startgame()
 {
   start = 1;
+  cp5.get("startgame").hide();
+  cp5.get("instructions").hide();
 }
   
