@@ -18,7 +18,7 @@ PImage img;
 void setup()
 {
   size(600, 600);
-  Ball ball = new Ball(200, height / 2, color(0, 255, 255));
+  Ball ball = new Ball(width/2, height / 2, color(0, 255, 255));
   gameObjects.add(ball);
   
   cp5 = new ControlP5(this);
@@ -42,6 +42,7 @@ void setup()
 }
 
 int start;
+int frames;
 
 // The class name always starts with uppercase!!
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
@@ -67,15 +68,16 @@ void draw()
   }
   else
   {
+    frames++;
     background(0);
+    for(int i = gameObjects.size() - 1 ; i >= 0   ;i --)
+    {
+      GameObject go = gameObjects.get(i);
+      go.update();
+      go.render();
+    }
   }
   System.out.println(start);
-  for(int i = gameObjects.size() - 1 ; i >= 0   ;i --)
-  {
-    GameObject go = gameObjects.get(i);
-    go.update();
-    go.render();
-  }
   checkCollisions();
 }
 
