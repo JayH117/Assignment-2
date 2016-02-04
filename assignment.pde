@@ -29,7 +29,6 @@ void setup()
   
   minim = new Minim(this);
   player = minim.loadFile("Jet Set Radio Future - Technopathic.mp3", 2048);
-  player.loop();
   
   img = loadImage("pong.jpg");
   image(img, 0, 0);
@@ -42,11 +41,11 @@ void setup()
 }
 
 int start;
-int frames;
+int score;
 int interval = 10;
 int obj = 0;
+int level = 1;
 
-// The class name always starts with uppercase!!
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
 boolean[] keys = new boolean[512];
@@ -71,38 +70,59 @@ void draw()
   else if(start == 2)
   {
     background(0);
+    player.mute();
     println("Try Lee Carvalo's Putting Challenge");
   }
   else
   {
     if(frameCount % 60 == 0)
     {
-      frames++;
+      score ++;
     }
-    if (frameCount % 360 == 0)
-    {
-      int p = (int) random(0, 2);
-      switch (p)
-      {
-        case 0:
-          background(0, 255, 255);
-          break;
-        case 1:
-          background(255, 0, 0);
-          break;
-        case 2:
-          background(random(0,255), random(0,255), random(0,255));
-          break;
-        case 3:
-          background(random(0,255), random(0,255), random(0,255));
-          break;           
-      }
-    }
-    else
+    
+    if(score < 30)
     {
       background (0);
     }
-    if (frames > 3)
+    
+    if(score > 30 && score < 60)
+    {
+      background(random(0,255),random(0,255), random(0,255));
+    }
+    
+    if(score > 60 && score < 90)
+    {
+       for (int k = 0 ; k < 60 ; k ++)
+          {
+            if(score % 2 == 0)
+            {
+              background(0);
+            }
+            stroke(0, 255, 255);
+            fill(0,255,255);
+            ellipse(random(0, 600), random(0, 600), 30, 30);
+          } 
+    }
+    
+    if(score >90 && score < 120)
+    {
+      if(score == 91)
+      {
+        background(0);
+      }
+      println("Don't do drugs");
+    }
+    
+    if(score >120 && score < 150)
+    {
+      background(0, 255, 255);
+      if(score % 2 == 0)
+      {
+        background(0);
+      }
+    }
+   
+    if (score > 3)
     {
       for(int i = gameObjects.size() - 1 ; i >= 0   ;i --)
       {
@@ -132,7 +152,6 @@ void checkCollisions()
         GameObject other = gameObjects.get(j);
         if (other instanceof Line) // Check the type of a object
         {
-          // Bounding circle collisions
           if (go.pos.dist(other.pos) < go.halfW + 50)
           {
             ((Line) other).applyTo((Ball)go);
@@ -152,6 +171,7 @@ void instructions()
 
 void startgame()
 {
+  player.loop();
   start = 1;
   cp5.get("startgame").hide();
   cp5.get("instructions").hide();
