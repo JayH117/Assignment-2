@@ -66,12 +66,21 @@ void draw()
   {
     image(img, 0, 0, width, height);
   }
+  else if(start == 2)
+  {
+    background(0);
+    println("Try Lee Cravalho's Putting Challenge");
+  }
   else
   {
-    frames++;
-    background(0);
-    if (frames > 180)
+    if(frameCount % 60 == 0)
     {
+      frames++;
+    }
+    background(0);
+    if (frames > 3)
+    {
+      
       for(int i = gameObjects.size() - 1 ; i >= 0   ;i --)
       {
         GameObject go = gameObjects.get(i);
@@ -91,6 +100,10 @@ void checkCollisions()
     GameObject go = gameObjects.get(i);
     if (go instanceof Ball)
     {
+      if(go.pos.x > width || go.pos.x < 0 || go.pos.y > height || go.pos.y < 0)
+      {
+        gameover();
+      }
       for(int j = gameObjects.size() - 1 ; j >= 0   ;j --)
       {
         GameObject other = gameObjects.get(j);
@@ -119,5 +132,10 @@ void startgame()
   start = 1;
   cp5.get("startgame").hide();
   cp5.get("instructions").hide();
+}
+
+void gameover()
+{
+  start = 2;
 }
   
