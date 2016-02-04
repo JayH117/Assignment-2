@@ -35,7 +35,7 @@ void setup()
   image(img, 0, 0);
   image(img, 0, 0, width, height);
   
-  Line line = new Line('W', 'S', 'A', 'D', 10, 70, width/2, 0, color(0, 255, 255));
+  Line line = new Line('W', 'S', 'A', 'D', 10, 70, width/2, 0, color(255, 0, 0));
   gameObjects.add(line);
   start=0;
   //System.out.print(start);
@@ -43,6 +43,8 @@ void setup()
 
 int start;
 int frames;
+int interval = 10;
+int obj = 0;
 
 // The class name always starts with uppercase!!
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
@@ -69,7 +71,7 @@ void draw()
   else if(start == 2)
   {
     background(0);
-    println("Try Lee Cravalho's Putting Challenge");
+    println("Try Lee Carvalo's Putting Challenge");
   }
   else
   {
@@ -77,10 +79,31 @@ void draw()
     {
       frames++;
     }
-    background(0);
+    if (frameCount % 360 == 0)
+    {
+      int p = (int) random(0, 2);
+      switch (p)
+      {
+        case 0:
+          background(0, 255, 255);
+          break;
+        case 1:
+          background(255, 0, 0);
+          break;
+        case 2:
+          background(random(0,255), random(0,255), random(0,255));
+          break;
+        case 3:
+          background(random(0,255), random(0,255), random(0,255));
+          break;           
+      }
+    }
+    else
+    {
+      background (0);
+    }
     if (frames > 3)
     {
-      
       for(int i = gameObjects.size() - 1 ; i >= 0   ;i --)
       {
         GameObject go = gameObjects.get(i);
