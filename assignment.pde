@@ -37,7 +37,6 @@ void setup()
   Line line = new Line('W', 'S', 'A', 'D', 10, 70, width/2, 0, color(255, 0, 0));
   gameObjects.add(line);
   start=0;
-  //System.out.print(start);
 }
 
 int start;
@@ -85,16 +84,16 @@ void draw()
       background (0);
     }
     
-    if(score > 30 && score < 60)
+    else if(score > 30 && score < 60)
     {
       background(random(0,255),random(0,255), random(0,255));
     }
     
-    if(score > 60 && score < 90)
+    else if(score > 60 && score < 90)
     {
-       for (int k = 0 ; k < 60 ; k ++)
+       for (int k = 0 ; k < 50 ; k ++)
           {
-            if(score % 2 == 0)
+            if(score % 1 == 0)
             {
               background(0);
             }
@@ -104,7 +103,7 @@ void draw()
           } 
     }
     
-    if(score >90 && score < 120)
+    else if(score >90 && score < 120)
     {
       if(score == 91)
       {
@@ -113,13 +112,22 @@ void draw()
       println("Don't do drugs");
     }
     
-    if(score >120 && score < 150)
+    else if(score >120 && score < 150)
     {
       background(0, 255, 255);
       if(score % 2 == 0)
       {
         background(0);
       }
+    }
+    else if(score >= 150)
+    {
+      level++;
+    }
+    
+    else
+    {
+      background(0);
     }
    
     if (score > 3)
@@ -150,9 +158,9 @@ void checkCollisions()
       for(int j = gameObjects.size() - 1 ; j >= 0   ;j --)
       {
         GameObject other = gameObjects.get(j);
-        if (other instanceof Line) // Check the type of a object
+        if (other instanceof Line)
         {
-          if (go.pos.dist(other.pos) < go.halfW + 50)
+          if (go.pos.dist(other.pos) < go.pos.x)
           {
             ((Line) other).applyTo((Ball)go);
           }

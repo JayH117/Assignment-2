@@ -10,7 +10,6 @@ abstract class GameObject
  
   GameObject()
   {
-    // Constructor chaining
     this(width * 0.5f, height  * 0.5f, 50);     
   }
   
@@ -18,7 +17,7 @@ abstract class GameObject
   {
     pos = new PVector(x, y);
     forward = new PVector(0, -1);
-    this.w = w; // Disambiguate w by using this
+    this.w = w;
     this.halfW = w * 0.5f;
     this.theta = 0.0f;
   }

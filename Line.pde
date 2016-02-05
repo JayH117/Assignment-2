@@ -20,7 +20,6 @@ class Line extends GameObject
     this.left = left;
     this.right = right;
     this.down = down;
-    this.side = side;
     this.rwidth = rwidth;
     this.rlength = rlength;
     this.c = c;
@@ -78,10 +77,10 @@ class Line extends GameObject
   
   void render()
   {
-    pushMatrix(); // reset the translation and rotation
+    pushMatrix();
     stroke(c);
     fill(c);
-    rotate(theta); // We want rotate to happen first, so you make the call AFTER translate    
+    rotate(theta);
     if(side == left || side == right)
     {
       rect(pos.x, pos.y, 10,70);

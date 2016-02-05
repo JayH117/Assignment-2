@@ -10,14 +10,9 @@ class Ball extends GameObject
   int lives;
   int ammo;
   
-  // Constructor!!
-  // HAS NO RETURN TYPE
-  // Name is always the same as the class
   Ball()
   {
-    // Constructor chaining. Call a constructor in the super class
     super(width * 0.5f, height  * 0.5f, 50);     
-    
   }
   
   Ball(float startX, float startY, color c)
