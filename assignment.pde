@@ -1,3 +1,4 @@
+//Audio library
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -9,11 +10,14 @@ import ddf.minim.ugens.*;
 import controlP5.*;
 ControlP5 cp5;
 
+//declaring audio player
 Minim minim;
 AudioPlayer player;
 AudioMetaData meta;
 
-PImage img;
+PFont f;
+
+PImage img;//declaring image variable
 
 void setup()
 {
@@ -23,12 +27,16 @@ void setup()
   
   cp5 = new ControlP5(this);
   
+  f = createFont("Arial",32,true);
+  
   //declarations for cp5 buttons
   cp5.addButton("startgame").setValue(1).setPosition(150,450).setSize(80,50).setLabel("Start Game").show();
   cp5.addButton("instructions").setValue(2).setPosition(350,450).setSize(80,50).setLabel("Instructions").show();
   
   minim = new Minim(this);
   player = minim.loadFile("Jet Set Radio Future - Technopathic.mp3", 2048);
+  
+  textFont(f,16);
   
   img = loadImage("pong.jpg");
   image(img, 0, 0);
@@ -44,6 +52,7 @@ int score;
 int interval = 10;
 int obj = 0;
 int level = 1;
+int message;
 
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
@@ -68,9 +77,33 @@ void draw()
   }
   else if(start == 2)
   {
+    fill(255, 0, 0);
     background(0);
     player.mute();
-    println("Try Lee Carvalo's Putting Challenge");
+    textFont(f, 32);
+    textAlign(CENTER);
+    if(message == 1)
+    {
+      text("Sorry, Games require skill",width/2, 200);
+    }
+    if(message == 2)
+    {
+      text("Try Lee Carvalo's Putting Challenge",width/2, 200);
+    }
+    if(message == 3)
+    {
+      text("I code better than you play, which says a lot",width/2, 200);
+    }
+    if(message == 4)
+    {
+      text("Not bad, but still, bad.",width/2, 200);
+    }
+    if(message == 5)
+    {
+      text("You're good. No wait, the other one, bad.",width/2, 200);
+    }
+    text("Level " + score,width/2, 400);  
+    text("Score: " + score,width/2, 450);  
   }
   else
   {
@@ -82,11 +115,13 @@ void draw()
     if(score < 30)
     {
       background (0);
+      message = 1;
     }
     
     else if(score > 30 && score < 60)
     {
       background(random(0,255),random(0,255), random(0,255));
+      message = 2;
     }
     
     else if(score > 60 && score < 90)
@@ -101,6 +136,7 @@ void draw()
             fill(0,255,255);
             ellipse(random(0, 600), random(0, 600), 30, 30);
           } 
+          message = 3;
     }
     
     else if(score >90 && score < 120)
@@ -109,7 +145,7 @@ void draw()
       {
         background(0);
       }
-      println("Don't do drugs");
+      message = 4;
     }
     
     else if(score >120 && score < 150)
@@ -119,6 +155,7 @@ void draw()
       {
         background(0);
       }
+      message = 5;
     }
     else if(score >= 150)
     {
