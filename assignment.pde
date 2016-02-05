@@ -96,7 +96,7 @@ void draw()
     }
     if(message == 3)
     {
-      text("I code better than you play, which says a lot",width/2, 200);
+      text("It's like you have no brain",width/2, 200);
     }
     if(message == 4)
     {
@@ -137,19 +137,19 @@ void draw()
     
     else if(score > 30 && score < 60)
     {
+      background(random(0,255),random(0,255), random(0,255));
       if(score < 35 && level == 1)
       {
         text("Still pretty easy", width/2, 300); 
       }
-      background(random(0,255),random(0,255), random(0,255));
       message = 2;
     }
     
     else if(score > 60 && score < 90)
     {
-       for (int k = 0 ; k < 50 ; k ++)
+       for (int k = 0 ; k < 1 ; k ++)
           {
-            if(score % 1 == 0)
+            if(score % 2 == 0)
             {
               background(0);
             }
@@ -159,6 +159,7 @@ void draw()
           } 
           if(score < 65 && level == 1)
           {
+            stroke(255);
             text("Which one is the real ball?", width/2, 300); 
           }
           message = 3;
