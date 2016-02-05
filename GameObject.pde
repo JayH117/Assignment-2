@@ -6,7 +6,11 @@ abstract class GameObject
   float w;
   float halfW;
   float speed = 3.0f;
-  color c; 
+  color c;
+  float left;
+  float right;
+  float top;
+  float bottom;
  
   GameObject()
   {

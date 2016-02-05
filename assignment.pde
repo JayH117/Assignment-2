@@ -24,6 +24,7 @@ void setup()
   size(600, 600);
   Ball ball = new Ball(width/2, height / 2, color(0, 255, 255));
   gameObjects.add(ball);
+  rectMode(CENTER);
   
   cp5 = new ControlP5(this);
   
@@ -54,6 +55,7 @@ int interval = 10;
 int obj = 0;
 int level = 1;
 int message;
+int countdown = 3;
 
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
@@ -71,6 +73,7 @@ void keyReleased()
 }
 void draw()
 {
+  
   //System.out.print(start);
   if (start == 0)
   {
@@ -78,9 +81,9 @@ void draw()
   }
   else if(start == 2)
   {
-    fill(255, 0, 0);
     background(0);
     player.mute();
+    fill(255, 0, 0);
     textFont(f, 32);
     textAlign(CENTER);
     if(message == 1)
@@ -108,20 +111,36 @@ void draw()
   }
   else
   {
+    fill(255, 0, 0);
+    textFont(f, 32);
+    textAlign(CENTER);
     if(frameCount % 60 == 0)
     {
       score ++;
       printscore++;
+      countdown--;
     }
     
     if(score < 30)
     {
       background (0);
+      if(score < 7 && level == 1)
+      {
+        text("Even you can do this part", width/2, 300); 
+      }
+      else if(score < 7 && level == 2)
+      {
+        text("I'll shut up now...but the ball goes faster", width/2, 300); 
+      }
       message = 1;
     }
     
     else if(score > 30 && score < 60)
     {
+      if(score < 35 && level == 1)
+      {
+        text("Still pretty easy", width/2, 300); 
+      }
       background(random(0,255),random(0,255), random(0,255));
       message = 2;
     }
@@ -138,6 +157,10 @@ void draw()
             fill(0,255,255);
             ellipse(random(0, 600), random(0, 600), 30, 30);
           } 
+          if(score < 65 && level == 1)
+          {
+            text("Which one is the real ball?", width/2, 300); 
+          }
           message = 3;
     }
     
@@ -147,6 +170,10 @@ void draw()
       {
         background(0);
       }
+      if(score < 95 && level == 1)
+          {
+            text("Don't do drugs kids", width/2, 300); 
+          }
       message = 4;
     }
     
@@ -157,19 +184,31 @@ void draw()
       {
         background(0);
       }
+      if(score < 125 && level == 1)
+          {
+            text("Where did it go?", width/2, 300); 
+          }
       message = 5;
     }
     else if(score >= 150)
     {
       level++;
-      score = 0;
+      score = 0;              
     }
     
     else
     {
       background(0);
     }
-   
+    if(score < 3)
+    {
+      background(0);
+      textAlign(CENTER);
+      fill(255);
+      textFont(f, 32);
+      text("Get Ready", width/2, 300);
+      text(""+countdown, width/2, 500);
+    }
     if (score > 3)
     {
       for(int i = gameObjects.size() - 1 ; i >= 0   ;i --)

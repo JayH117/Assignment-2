@@ -1,10 +1,7 @@
 // The class name starts with uppercase
 class Ball extends GameObject
 {
-  // Fields!
   char move;
-  char left;
-  char right;
   float theta;
   
   int lives;
@@ -19,6 +16,8 @@ class Ball extends GameObject
   {
     super(startX, startY, 50);
     this.c = c;
+    halfW = w * 0.5f;
+    
   }
 
   int elapsed = 12;
