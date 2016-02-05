@@ -48,6 +48,7 @@ void setup()
 }
 
 int start;
+int printscore;
 int score;
 int interval = 10;
 int obj = 0;
@@ -102,14 +103,15 @@ void draw()
     {
       text("You're good. No wait, the other one, bad.",width/2, 200);
     }
-    text("Level " + score,width/2, 400);  
-    text("Score: " + score,width/2, 450);  
+    text("Level " + level, width/2, 400);  
+    text("Score: " + printscore, width/2, 450);  
   }
   else
   {
     if(frameCount % 60 == 0)
     {
       score ++;
+      printscore++;
     }
     
     if(score < 30)
@@ -160,6 +162,7 @@ void draw()
     else if(score >= 150)
     {
       level++;
+      score = 0;
     }
     
     else
@@ -197,7 +200,7 @@ void checkCollisions()
         GameObject other = gameObjects.get(j);
         if (other instanceof Line)
         {
-          if (go.pos.dist(other.pos) < go.pos.x)
+          if (go.pos.dist(other.pos) < go.halfW + other.halfW)
           {
             ((Line) other).applyTo((Ball)go);
           }
