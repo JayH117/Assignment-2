@@ -49,22 +49,22 @@ class Line extends GameObject
     
     if(side == up)
     {
-      pos.x = mouseX-35;
+      pos.x = mouseX;
       pos.y = 5;
     }
     if(side == down)
     {
-      pos.x = mouseX-35;
+      pos.x = mouseX;
       pos.y = height-15;
     }
     if(side == left)
     {
-      pos.y = mouseY-35;
+      pos.y = mouseY;
       pos.x = 5;
     }
     if(side == right)
     {
-      pos.y = mouseY-35;
+      pos.y = mouseY;
       pos.x = width -15; 
     }
       
@@ -72,15 +72,15 @@ class Line extends GameObject
   
   void applyTo(Ball ball)
   {
-    ball.theta += -speed;
+    ball.theta += -(speed);
   }
   
   void render()
   {
     pushMatrix();
     stroke(c);
+    rectMode(CENTER);
     fill(c);
-    rotate(theta);
     if(side == left || side == right)
     {
       rect(pos.x, pos.y, 10,70);

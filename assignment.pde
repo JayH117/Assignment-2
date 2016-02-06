@@ -15,8 +15,8 @@ Minim minim;
 AudioPlayer player;
 AudioMetaData meta;
 
-PFont f;
-
+PFont f;//declaring font variable
+PVector len;
 PImage img;//declaring image variable
 
 void setup()
@@ -46,6 +46,7 @@ void setup()
   Line line = new Line('W', 'S', 'A', 'D', 10, 70, width/2, 0, color(255, 0, 0));
   gameObjects.add(line);
   start=0;
+  len = new PVector(0,70);
 }
 
 int start;

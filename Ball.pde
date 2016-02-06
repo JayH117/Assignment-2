@@ -16,11 +16,8 @@ class Ball extends GameObject
   {
     super(startX, startY, 50);
     this.c = c;
-    halfW = w * 0.5f;
-    
+    halfW = w * 0.5f;  
   }
-
-  int elapsed = 12;
   
   void update()
   {
@@ -29,7 +26,6 @@ class Ball extends GameObject
     forward.mult(speed);
     pos.add(forward);
     
-    elapsed ++;
   }
   
   void render()
