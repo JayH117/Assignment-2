@@ -25,11 +25,11 @@ class Ball extends GameObject
   
   void render()
   {
-    pushMatrix(); // reset the translation and rotation
+    pushMatrix(); 
     translate(pos.x, pos.y);
     stroke(c);
     fill(c);
-    rotate(theta); // We want rotate to happen first, so you make the call AFTER translate    
+    rotate(theta); 
     ellipse(0, 0, halfW,halfW);
     popMatrix();
   }   

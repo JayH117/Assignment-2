@@ -73,7 +73,12 @@ class Line extends GameObject
   void applyTo(Ball ball)
   {
     
-    ball.theta += random(.5, -(.5));
+    ball.theta += random(2,4);
+    if (frameCount % 120 == 0)//bug fix
+    {
+      ball.pos.x = (width/2);
+      ball.pos.y = (height/2);
+    }
   }
   
   void render()
