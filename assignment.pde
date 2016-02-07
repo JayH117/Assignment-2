@@ -45,7 +45,7 @@ void setup()
   image(img, 0, 0, width, height);
   
   //line variable
-  Line line = new Line('W', 'S', 'A', 'D', 10, 70, width/2, 0, color(255, 0, 0));
+  Line line = new Line('W', 'S', 'A', 'D', width/2, 0, color(255, 0, 0));
   gameObjects.add(line);
   start=0;
 }
@@ -263,7 +263,7 @@ void instructions()
   image(img, 0, 0);
   image(img, 0, 0, width, height);
 }
-7//loop the audio, hide buttons and commence game
+//loop the audio, hide buttons and commence game
 void startgame()
 {
   player.loop();
