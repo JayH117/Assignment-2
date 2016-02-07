@@ -250,6 +250,8 @@ void checkCollisions()
           {
             ((Line) other).applyTo((Ball)go);
           }
+          //Bounding circle collisions used, could not
+          //get the rectshape to work
          }
         }
       }
