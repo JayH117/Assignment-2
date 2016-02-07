@@ -1,11 +1,7 @@
 // The class name starts with uppercase
 class Ball extends GameObject
 {
-  char move;
   float theta;
-  
-  int lives;
-  int ammo;
   
   Ball()
   {
@@ -25,7 +21,6 @@ class Ball extends GameObject
     forward.y = - cos(theta);
     forward.mult(speed);
     pos.add(forward);
-    
   }
   
   void render()

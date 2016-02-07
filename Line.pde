@@ -72,7 +72,8 @@ class Line extends GameObject
   
   void applyTo(Ball ball)
   {
-    ball.theta += -(speed);
+    
+    ball.theta += random(.5, -(.5));
   }
   
   void render()

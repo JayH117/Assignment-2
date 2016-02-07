@@ -46,14 +46,11 @@ void setup()
   Line line = new Line('W', 'S', 'A', 'D', 10, 70, width/2, 0, color(255, 0, 0));
   gameObjects.add(line);
   start=0;
-  len = new PVector(0,70);
 }
 
 int start;
 int printscore;
 int score;
-int interval = 10;
-int obj = 0;
 int level = 1;
 int message;
 int countdown = 3;
@@ -125,13 +122,9 @@ void draw()
     if(score < 30)
     {
       background (0);
-      if(score < 7 && level == 1)
+      if(score < 7)
       {
         text("Even you can do this part", width/2, 300); 
-      }
-      else if(score < 7 && level == 2)
-      {
-        text("I'll shut up now...but the ball goes faster", width/2, 300); 
       }
       message = 1;
     }
@@ -150,7 +143,7 @@ void draw()
     {
        for (int k = 0 ; k < 1 ; k ++)
           {
-            if(score % 2 == 0)
+            if(frameCount % 5 == 0)
             {
               background(0);
             }
@@ -194,8 +187,8 @@ void draw()
     }
     else if(score >= 150)
     {
-      level++;
-      score = 0;              
+      message = 6;
+      gameover();
     }
     
     else
@@ -241,15 +234,16 @@ void checkCollisions()
         GameObject other = gameObjects.get(j);
         if (other instanceof Line)
         {
-          if (go.pos.dist(other.pos) < go.halfW + other.halfW)
+          if (go.pos.dist(other.pos) < go.halfW-10 + other.halfW)
           {
             ((Line) other).applyTo((Ball)go);
           }
+         }
         }
       }
     }
  } 
-}
+
   
 void instructions()
 {
