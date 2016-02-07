@@ -1,4 +1,4 @@
-// The class name starts with uppercase
+//ball class, 
 class Ball extends GameObject
 {
   float theta;

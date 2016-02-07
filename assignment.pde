@@ -33,30 +33,34 @@ void setup()
   cp5.addButton("startgame").setValue(1).setPosition(150,450).setSize(80,50).setLabel("Start Game").show();
   cp5.addButton("instructions").setValue(2).setPosition(350,450).setSize(80,50).setLabel("Instructions").show();
   
+  //choosing song
   minim = new Minim(this);
   player = minim.loadFile("Jet Set Radio Future - Technopathic.mp3", 2048);
   
-  textFont(f,16);
+  textFont(f,16);//choosing text font and size
   
+  //loading and displaying menu
   img = loadImage("pong.jpg");
   image(img, 0, 0);
   image(img, 0, 0, width, height);
   
+  //line variable
   Line line = new Line('W', 'S', 'A', 'D', 10, 70, width/2, 0, color(255, 0, 0));
   gameObjects.add(line);
   start=0;
 }
 
+//declaring initial variables
 int start;
 int printscore;
 int score;
 int message;
 int countdown = 3;
 
+//array list used for collisions
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
 boolean[] keys = new boolean[512];
-
 
 void keyPressed()
 {
@@ -70,18 +74,18 @@ void keyReleased()
 void draw()
 {
   
-  //System.out.print(start);
   if (start == 0)
   {
-    image(img, 0, 0, width, height);
+    image(img, 0, 0, width, height);//menu
   }
-  else if(start == 2)
+  else if(start == 2)//start
   {
     background(0);
     player.mute();
     fill(255, 0, 0);
     textFont(f, 32);
     textAlign(CENTER);
+    //Failure messages
     if(message == 1)
     {
       text("Sorry, Games require skill",width/2, 200);
@@ -114,13 +118,16 @@ void draw()
     fill(255, 0, 0);
     textFont(f, 32);
     textAlign(CENTER);
+    
     if(frameCount % 60 == 0)
     {
+      //timers used for levels and scores
       score ++;
       printscore++;
       countdown--;
     }
     
+    //level obstacles occuring at different intervals
     if(score < 30)
     {
       background (0);
@@ -193,6 +200,7 @@ void draw()
       gameover();
     }
     
+    //wipe the background between obstacles
     else
     {
       background(0);
@@ -216,17 +224,19 @@ void draw()
       }
     }
   }
-  System.out.println(start);
-  checkCollisions();
+  checkCollisions();//calling check collisions
 }
 
 void checkCollisions()
 {
+  //cycle through game objects array list
+  //if ball is touching line, rotate it using bounce interface
  for(int i = gameObjects.size() - 1 ; i >= 0   ;i --)
  {
     GameObject go = gameObjects.get(i);
     if (go instanceof Ball)
     {
+      //game over condition, if ball is off screen
       if(go.pos.x > width || go.pos.x < 0 || go.pos.y > height || go.pos.y < 0)
       {
         gameover();
@@ -246,14 +256,14 @@ void checkCollisions()
     }
  } 
 
-  
+//display instructions
 void instructions()
 {
   img = loadImage("inst.jpg");
   image(img, 0, 0);
   image(img, 0, 0, width, height);
 }
-
+7//loop the audio, hide buttons and commence game
 void startgame()
 {
   player.loop();
@@ -262,6 +272,7 @@ void startgame()
   cp5.get("instructions").hide();
 }
 
+//display score, appropriate game over message
 void gameover()
 {
   start = 2;

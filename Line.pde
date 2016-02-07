@@ -25,6 +25,7 @@ class Line extends GameObject
     this.c = c;
   }
   
+  //controlling the line, drawing on each side
   void update()
   {
     forward.x = sin(theta);
