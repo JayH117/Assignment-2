@@ -16,7 +16,6 @@ AudioPlayer player;
 AudioMetaData meta;
 
 PFont f;//declaring font variable
-PVector len;
 PImage img;//declaring image variable
 
 void setup()
@@ -51,7 +50,6 @@ void setup()
 int start;
 int printscore;
 int score;
-int level = 1;
 int message;
 int countdown = 3;
 
@@ -104,7 +102,11 @@ void draw()
     {
       text("You're good. No wait, the other one, bad.",width/2, 200);
     }
-    text("Level " + level, width/2, 400);  
+    if(message == 6)
+    {
+      text("You beat a game, good job, loser",width/2, 200);
+    }
+        
     text("Score: " + printscore, width/2, 450);  
   }
   else
@@ -132,7 +134,7 @@ void draw()
     else if(score > 30 && score < 60)
     {
       background(random(0,255),random(0,255), random(0,255));
-      if(score < 35 && level == 1)
+      if(score < 35)
       {
         text("Still pretty easy", width/2, 300); 
       }
@@ -151,7 +153,7 @@ void draw()
             fill(0,255,255);
             ellipse(random(0, 600), random(0, 600), 30, 30);
           } 
-          if(score < 65 && level == 1)
+          if(score < 65)
           {
             stroke(255);
             text("Which one is the real ball?", width/2, 300); 
@@ -165,7 +167,7 @@ void draw()
       {
         background(0);
       }
-      if(score < 95 && level == 1)
+      if(score < 95)
           {
             text("Don't do drugs kids", width/2, 300); 
           }
@@ -179,7 +181,7 @@ void draw()
       {
         background(0);
       }
-      if(score < 125 && level == 1)
+      if(score < 125)
           {
             text("Where did it go?", width/2, 300); 
           }
