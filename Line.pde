@@ -70,21 +70,8 @@ class Line extends GameObject
   void applyTo(Ball ball)
   {
     //controlling rotations
-    int i;
-    i = (int) random(0,2);
-    switch(i)
-    {
-      case 0:
-      {
-        ball.theta += random(2,4);
-        break;
-      }
-      case 1:
-      {
-        ball.theta += random(-2,-4);
-        break;
-      }
-    }
+    ball.theta += random(1,4);
+   
     if (frameCount % 60 == 0)//bug fix
     {
       ball.pos.x = (width/2);
